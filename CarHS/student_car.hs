@@ -66,7 +66,7 @@ drive x (Info (Car pass maxPass gas maxGas km) op) =
             gasAtt = if x < gas
                         then gas - x
                         else 0 
-            kmAtt = gas - gasAtt
+            kmAtt = km + gas - gasAtt
 
 -- main = print $ resume . embark . resume. embark . resume $ createCar 2 50
 main = do 
