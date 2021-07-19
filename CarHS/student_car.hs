@@ -60,13 +60,14 @@ disembark (Info (Car pass maxPass gas maxGas km) op) =
 drive :: Int -> Info -> Info 
 drive x (Info (Car pass maxPass gas maxGas km) op) =
     if pass > 0 && gas > 0
-        then Info (Car pass maxPass (gasAtt) maxGas (kmAtt)) (Op "Dirigindo meu carro" True)
+        then Info (Car pass maxPass (gasAtt) maxGas (kmAtt)) (Op "Dirigindo meu carro" (verify))
         else Info (Car pass maxPass gas maxGas km) (Op "Dirigindo meu carro" False)
         where
             gasAtt = if x < gas
                         then gas - x
                         else 0 
             kmAtt = km + gas - gasAtt
+            verify = if gas >= x then True else False
 
 -- main = print $ resume . embark . resume. embark . resume $ createCar 2 50
 main = do 
